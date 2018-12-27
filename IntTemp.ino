@@ -72,7 +72,7 @@ void loop()
   delay(delayTime);
 }
 
-// функция чтения значений с датчика 
+
 void readValues() {
   temp = bme.readTemperature();
   humi = bme.readHumidity();
