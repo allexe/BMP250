@@ -1,6 +1,6 @@
 /******************************************************************************
-  Room temperature, humidity and pressure
-  Комнатная температура, влажность и давление
+  Temperature, humidity and pressure by BMP250
+  Температура, влажность и давление с датчика BMP250
 
   Отображение на ЖК-дисплее LCD 1602 (I2C) данных о текущих температуре (°С),
   влажности (%) и давлении (mmHg - мм.рт.ст) с датчика BMP280 (I2C). И дисплей
@@ -14,6 +14,7 @@
 
 // подключаем библиотеки
 #include <Wire.h>
+#include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 #include <LiquidCrystal_I2C.h>
 
@@ -84,11 +85,11 @@ void printValues() {
 
   lcd.clear();
 
-  if temp >= 0 {
+  if (temp >= 0) {
   lcd.setCursor(1, 0); // если температура больше 0, то ставим курсор в 1 столб
   }
   else {
-    lcd.setCursor(0, 0); / если температура меньше 0, то оставляем место для "-" 
+    lcd.setCursor(0, 0); // если температура меньше 0, то оставляем место для "-" 
   }
   lcd.print(temp, 1);
   lcd.setCursor(5, 0);
