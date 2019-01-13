@@ -8,18 +8,78 @@
 
   created 26 Dec 2018
   by Alexey Vorotikov
-  modified 28 Dec 2018
+  modified 13 Jan 2019
   by Alexey Vorotikov
  ******************************************************************************/
+
+
+
+
+/*
+//  Calculating dewpoint on the BME280
+//  Nathan Seidle @ SparkFun Electronics
+//  November 3rd, 2018
+//  Feel like supporting our work? Buy a board from SparkFun!
+//  https://www.sparkfun.com/products/14348 - Qwiic Combo Board
+//  https://www.sparkfun.com/products/13676 - BME280 Breakout Board
+//  This example shows how to calculate dew point based on humidity and temperature.
+//  Comes from Pavel-Sayekat: https://github.com/sparkfun/SparkFun_BME280_Breakout_Board/pull/6
+//  Hardware connections:
+//  BME280 -> Arduino
+//  GND -> GND
+//  3.3 -> 3.3
+//  SDA -> A4
+//  SCL -> A5
+//*/
+//
+//#include <Wire.h>
+//
+//#include "SparkFunBME280.h"
+//BME280 mySensor;
+//
+//void setup()
+//{
+//  Serial.begin(9600);
+//  Serial.println("Example showing dewpoint calculation");
+//
+//  mySensor.setI2CAddress(0x76); //Connect to a second sensor
+//  if (mySensor.beginI2C() == false) Serial.println("Sensor connect failed");
+//}
+//
+//void loop()
+//{
+//  Serial.print("Humidity: ");
+//  Serial.print(mySensor.readFloatHumidity(), 0);
+//
+//  Serial.print(" Pressure: ");
+//  Serial.print(mySensor.readFloatPressure()*0.0075, 0);
+//
+//  Serial.print(" Temp: ");
+//  Serial.print(mySensor.readTempC(), 2);
+//  //Serial.print(mySensor.readTempF(), 2);
+//
+//  Serial.print(" Dewpoint: ");
+//  //Serial.print(mySensor.dewPointC(), 2);
+//  Serial.print(mySensor.dewPointF(), 2);
+//
+//  Serial.println();
+//
+//  delay(5000);
+//}
+
+
+
 
 // подключаем библиотеки
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
+//#include <Adafruit_BME280_in.h>
 #include <LiquidCrystal_I2C.h>
 
 // создаем объект - датчик температуры, влажности и давления:
-Adafruit_BME280 bme;
+Adafruit_BME280 bme_out;
+//Adafruit_BME280_in bme_in;
 
 // создаем объект - экран, передаём используемый адрес и разрешение экрана:
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -44,9 +104,17 @@ void setup()
   lcd.setCursor(0, 0);
 
   //
-  status = bme.begin();
+//  status = bme_in.begin();
+//  if (!status) {
+//    lcd.print("No BME280 int sensor!");
+//    while (1);
+//  }
+
+  lcd.setCursor(0, 1);
+  //
+  status = bme_out.begin();
   if (!status) {
-    lcd.print("No BME280 sensor!");
+    lcd.print("No BME280 out sensor!");
     while (1);
   }
 
@@ -76,9 +144,9 @@ void loop()
 
 
 void readValues() {
-  temp = bme.readTemperature();
-  humi = bme.readHumidity();
-  pres = bme.readPressure() / 100.0F / 1.333;
+  temp = bme_out.readTemperature();
+  humi = bme_out.readHumidity();
+  pres = bme_out.readPressure() / 100.0F / 1.333;
 }
 
 void printValues() {
