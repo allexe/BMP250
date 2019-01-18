@@ -47,7 +47,7 @@ int   intHumidity;  // влажность
 int   intPressure;  // давление
 
 void setup() {
-  
+
   //  Serial.begin(9600);
   //  Serial.println("Example showing dewpoint calculation");
 
@@ -66,7 +66,7 @@ void setup() {
 
   // очищаем экран:
   lcd.clear();
-  
+
   // устанавливаем курсор в колонку 0, строку 0;
   lcd.setCursor(0, 0);
 
@@ -97,7 +97,7 @@ void setup() {
 }
 
 void loop() {
-  
+
   readValues();
   printValues();
   delay(delayTime);
