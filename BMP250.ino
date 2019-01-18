@@ -17,7 +17,7 @@
   Hardware connections:
   BME280 -> Arduino
   GND -> GND
-  3.3 -> 3.3
+  3.3 -> 3.3V
   SDA -> A4
   SCL -> A5
 
@@ -38,13 +38,13 @@ BME280 intSensor;
 // создаем объект - экран, передаём используемый адрес и разрешение экрана:
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-int delayTime;      // интервал опроса датчика
-float outTemp;         // температура
-int outHumidity;       // влажность
-int outPressure;       // давление
-float intTemp;         // температура
-int intHumidity;       // влажность
-int intPressure;       // давление
+int   delayTime;    // интервал опроса датчика
+float outTemp;      // температура
+int   outHumidity;  // влажность
+int   outPressure;  // давление
+float intTemp;      // температура
+int   intHumidity;  // влажность
+int   intPressure;  // давление
 
 void setup() {
   
