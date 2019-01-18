@@ -46,10 +46,10 @@ float intTemp;         // температура
 int intHumidity;       // влажность
 int intPressure;       // давление
 
-void setup()
-{
-  Serial.begin(9600);
-  Serial.println("Example showing dewpoint calculation");
+void setup() {
+  
+  //  Serial.begin(9600);
+  //  Serial.println("Example showing dewpoint calculation");
 
   outSensor.setI2CAddress(0x76); //Connect to a out sensor
   intSensor.setI2CAddress(0x77); //Connect to a home sensor
@@ -63,10 +63,14 @@ void setup()
   lcd.init();
   // включаем подсветку:
   lcd.backlight();
-  // устанавливаем курсор в колонку 0, строку 0;
+
+  // очищаем экран:
   lcd.clear();
+  
+  // устанавливаем курсор в колонку 0, строку 0;
   lcd.setCursor(0, 0);
 
+  // определяем статус внешнего датчика и ожидаем его подключения:
   status = outSensor.beginI2C();
   if (!status) {
     lcd.print("No BME280 OUT sensor!");
@@ -74,8 +78,10 @@ void setup()
 
   }
 
+  // устанавливаем курсор в колонку 0, строку 1;
   lcd.setCursor(0, 1);
- 
+
+  // определяем статус внутреннего датчика и ожидаем его подключения:
   status = intSensor.beginI2C();
   if (!status) {
     lcd.print("No BME280 INT sensor!");
@@ -86,13 +92,12 @@ void setup()
   lcd.setCursor(0, 0);
   lcd.print("Default Test");
   delayTime = 10000; // задаём интервал опроса датчика 10сек.
-  delay(1000); // даём датчику запуститься
+  delay(1000); // даём датчикам запуститься
 
 }
 
-void loop()
-{
-
+void loop() {
+  
   readValues();
   printValues();
   delay(delayTime);
@@ -119,16 +124,16 @@ void loop()
 
   //Serial.println();
 
-  delay(5000);
+  //delay(5000);
 }
 
 void readValues() {
   outTemp = outSensor.readTempC();
   outHumidity = outSensor.readFloatHumidity();
-  outPressure = outSensor.readFloatPressure()*0.0075;
+  outPressure = outSensor.readFloatPressure() * 0.0075;
   intTemp = intSensor.readTempC();
   intHumidity = intSensor.readFloatHumidity();
-  intPressure = intSensor.readFloatPressure()*0.0075;
+  intPressure = intSensor.readFloatPressure() * 0.0075;
 }
 
 void printValues() {
@@ -136,7 +141,7 @@ void printValues() {
   lcd.clear();
 
   if (outTemp >= 0) {
-  lcd.setCursor(1, 0); // если температура больше 0, то ставим курсор в 1 столб
+    lcd.setCursor(1, 0); // если температура больше 0, то ставим курсор в 1 столб
   }
   else {
     lcd.setCursor(0, 0); // если температура меньше 0, то оставляем место для "-"
@@ -157,7 +162,7 @@ void printValues() {
 
 
   lcd.setCursor(0, 1);
-  
+
   lcd.print(intTemp, 1);
   lcd.setCursor(5, 1);
   lcd.print("C");
