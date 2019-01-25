@@ -1,11 +1,9 @@
 /******************************************************************************
   Temperature, humidity and pressure by BME280
   Температура, влажность и давление с датчика BME280
-
   Отображение на ЖК-дисплее LCD 1602 (I2C) данных о текущих температуре (°С),
   влажности (%) и давлении (mmHg - мм.рт.ст) с датчика BMP280 (I2C). И дисплей
   и датчик подключены по шине I2C
-
   Для работы с датчиком BME280 используется библиотека "SparkFunBME280.h"
   SparkFun Electronics: https://www.sparkfun.com/products/13676
   https://github.com/sparkfun/SparkFun_BME280_Breakout_Board/pull/6
@@ -13,14 +11,12 @@
   I2C:
     0х76 - адрес с завода - уличный датчик;
     0x77 - адрес после перепайки - комнатный датчик.
-
   Hardware connections:
   BME280 -> Arduino
   GND -> GND
   3.3 -> 3.3V
   SDA -> A4
   SCL -> A5
-
   created 26 Dec 2018
   by Alexey Vorotikov
   modified 18 Jan 2019
