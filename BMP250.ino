@@ -11,15 +11,17 @@
   I2C:
     0х76 - адрес с завода - уличный датчик;
     0x77 - адрес после перепайки - комнатный датчик.
+  
   Hardware connections:
   BME280 -> Arduino
   GND -> GND
   3.3 -> 3.3V
   SDA -> A4
   SCL -> A5
+  
   created 26 Dec 2018
   by Alexey Vorotikov
-  modified 18 Jan 2019
+  modified 25 Jan 2019
   by Alexey Vorotikov
  ******************************************************************************/
 
