@@ -136,12 +136,23 @@ void printValues() {
 
   lcd.clear();
 
-  if (outTemp >= 0) {
-    lcd.setCursor(1, 0); // если температура больше 0, то ставим курсор в 1 столб
+  if (outTemp >= 0) {       // если внешняя температура больше 0
+    if (outTemp < 10) {
+      lcd.setCursor(2, 0);
+    }
+    else {
+      lcd.setCursor(1, 0); // если температура больше 0, то ставим курсор в 1 столб
+    }
   }
-  else {
-    lcd.setCursor(0, 0); // если температура меньше 0, то оставляем место для "-"
+  else {                    // если внешняя температура меньше 0
+    if (outTemp > -10) {
+      lcd.setCursor(1, 0);
+    }
+    else {
+      lcd.setCursor(0, 0); // если температура меньше 0, то оставляем место для "-"
+    }
   }
+  
   lcd.print(outTemp, 1);
   lcd.setCursor(5, 0);
   lcd.print("C");
@@ -157,7 +168,13 @@ void printValues() {
   lcd.print("mm");
 
 
-  lcd.setCursor(0, 1);
+  if (intTemp < 10) {
+    lcd.setCursor(2, 1);
+  }
+  else {
+    lcd.setCursor(1, 1);
+  }
+
 
   lcd.print(intTemp, 1);
   lcd.setCursor(5, 1);
