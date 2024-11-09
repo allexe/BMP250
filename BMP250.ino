@@ -20,9 +20,9 @@
   SCL -> A5
   
   created 26 Dec 2018
-  by Alexey Vorotikov
+  by Alexey Vorotnikov
   modified 25 Jan 2019
-  by Alexey Vorotikov
+  by Alexey Vorotnikov
  ******************************************************************************/
 
 #include <Wire.h>
