@@ -37,12 +37,12 @@ BME280 intSensor;
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 int   delayTime;    // интервал опроса датчика
-float outTemp;      // температура
-int   outHumidity;  // влажность
-int   outPressure;  // давление
-float intTemp;      // температура
-int   intHumidity;  // влажность
-int   intPressure;  // давление
+float outTemp;      // температура снаружи
+int   outHumidity;  // влажность снаружи
+int   outPressure;  // давление снаружи
+float intTemp;      // температура внутри
+int   intHumidity;  // влажность внутри
+int   intPressure;  // давление внутри
 
 void setup() {
 
